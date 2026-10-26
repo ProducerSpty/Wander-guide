@@ -1,80 +1,93 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Wander Guide"><meta name="theme-color" content="#17232b"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>Wander Guide</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Wander Guide"><meta name="theme-color" content="#d9d2c3"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>Wander Guide</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: one phone-first column; a route line runs down the left of the stop list like a trail on a map */
+/* Layout: same world as the portfolio — stone paper, framed cards with an offset moss shadow, serif display with mono labels. The stops hang off a forest-green trail like stations on a walking map. Single light theme by choice. */
 :root{
-  --bg:#f3f5f4; --surface:#ffffff; --ink:#17232b; --muted:#5b6a72; --line:#d6dedc;
-  --route:#e0602a; --route-soft:#fbe4d9; --ok:#2f7d5b; --ok-soft:#dcefe6; --warn:#a86a00; --warn-soft:#f6ebd2;
-  --display:"Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
-  --body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
-  --mono:"JetBrains Mono", ui-monospace, monospace;
+  --forest:#2e5e3a; --moss:#6b8f5a; --sage:#b7c7a3; --stone:#d9d2c3; --bark:#4b3f35;
+  --paper:#e6e0d3; --ink:#2b241e; --muted:#6f6357;
+  --display:"Newsreader","Iowan Old Style",Georgia,serif;
+  --body:"Figtree","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#11181c; --surface:#1a2328; --ink:#e7eeec; --muted:#9aa9ae; --line:#2c3a40;
-  --route:#ff7a45; --route-soft:#3a2219; --ok:#5cc596; --ok-soft:#173327; --warn:#e3a63a; --warn-soft:#3a2d12; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#11181c; --surface:#1a2328; --ink:#e7eeec; --muted:#9aa9ae; --line:#2c3a40;
-  --route:#ff7a45; --route-soft:#3a2219; --ok:#5cc596; --ok-soft:#173327; --warn:#e3a63a; --warn-soft:#3a2d12; color-scheme:dark}
-body{background:var(--bg);color:var(--ink);font:16px/1.5 var(--body)}
-.wrap{max-width:560px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 140px;display:grid;gap:20px}
-h1{font:700 2rem/1.05 var(--display);margin:0;text-wrap:balance;letter-spacing:-.01em}
-h2{font:700 1.15rem/1.2 var(--display);margin:0}
-.eyebrow{font:500 .72rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+*{box-sizing:border-box}
+html,body{background:var(--stone);color:var(--ink)}
+body{font:16px/1.55 var(--body)}
+.wrap{max-width:600px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 160px;display:grid;gap:22px}
+header.site{display:grid;gap:8px;padding-bottom:16px;border-bottom:1px solid var(--bark)}
+h1{font:500 clamp(34px,8vw,48px)/1.02 var(--display);margin:0;text-wrap:balance;letter-spacing:-.02em;color:var(--bark)}
+h2{font:500 1.35rem/1.2 var(--display);margin:0;color:var(--bark)}
+.eyebrow{font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.lede{font:italic 400 1.15rem/1.4 var(--display);color:var(--forest)}
 p{margin:0}
 .muted{color:var(--muted)}
-.tabs{display:flex;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:4px}
-.tabs button{flex:1;border:0;background:none;color:var(--muted);font:600 .95rem var(--body);padding:10px;border-radius:9px;cursor:pointer}
-.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tabs button,.chip{background:transparent;border:1px solid var(--moss);border-radius:999px;padding:8px 16px;font:500 14px/1 var(--body);color:var(--bark);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.tabs button:hover,.chip:hover{background:var(--sage);border-color:var(--sage)}
+.tabs button[aria-selected="true"]{background:var(--forest);border-color:var(--forest);color:var(--stone)}
+.chip{padding:6px 12px;font-size:13px}
+.chip.on{background:var(--forest);border-color:var(--forest);color:var(--stone)}
 button{font-family:var(--body)}
-.btn{border:0;border-radius:10px;padding:12px 16px;font:600 1rem var(--body);cursor:pointer;background:var(--route);color:#fff}
-.btn.ghost{background:none;color:var(--ink);border:1px solid var(--line)}
-.btn.small{padding:7px 12px;font-size:.88rem}
+.btn{border:1px solid var(--forest);border-radius:999px;padding:11px 18px;font:500 15px/1 var(--body);cursor:pointer;background:var(--forest);color:var(--stone)}
+.btn:hover{background:var(--bark);border-color:var(--bark)}
+.btn.ghost{background:none;color:var(--bark);border-color:var(--moss)}
+.btn.ghost:hover{background:var(--sage);border-color:var(--sage)}
+.btn.small{padding:8px 14px;font-size:14px}
 .btn:disabled{opacity:.55;cursor:default}
-:focus-visible{outline:2px solid var(--route);outline-offset:2px}
-.status{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-size:.95rem}
+:focus-visible{outline:2px solid var(--forest);outline-offset:3px}
+.frame{background:var(--paper);border:1px solid var(--bark);box-shadow:5px 5px 0 var(--sage)}
+.status{display:flex;align-items:center;gap:12px;padding:12px 14px;font-size:15px}
 .dot{width:10px;height:10px;border-radius:50%;background:var(--muted);flex:none}
-.status.on .dot{background:var(--ok);box-shadow:0 0 0 4px var(--ok-soft)}
-.status.blocked .dot{background:var(--warn)}
+.status.on .dot{background:var(--forest);box-shadow:0 0 0 4px var(--sage)}
+.status.blocked .dot{background:var(--bark)}
 .status .grow{flex:1;min-width:0}
-.stops{list-style:none;margin:0;padding:0;display:grid;gap:0;position:relative}
-.stop{display:grid;grid-template-columns:28px 1fr;gap:12px;position:relative;padding-bottom:18px}
-.stop::before{content:"";position:absolute;left:13px;top:26px;bottom:0;border-left:2px dashed var(--route)}
+.stops{list-style:none;margin:0;padding:0;display:grid}
+.stop{display:grid;grid-template-columns:30px minmax(0,1fr);gap:14px;position:relative;padding-bottom:22px}
+.stop::before{content:"";position:absolute;left:14px;top:30px;bottom:0;border-left:1.5px dashed var(--forest)}
 .stop:last-child::before{display:none}
-.pin{width:28px;height:28px;border-radius:50%;background:var(--surface);border:2px solid var(--route);display:grid;place-items:center;font:500 .8rem var(--mono);color:var(--route)}
-.stop.played .pin{background:var(--route);color:#fff}
-.stop.near .pin{box-shadow:0 0 0 6px var(--route-soft)}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;gap:8px;min-width:0}
+.pin{width:30px;height:30px;border-radius:50%;background:var(--paper);border:1.5px solid var(--forest);display:grid;place-items:center;font:500 12px var(--mono);color:var(--forest);font-variant-numeric:tabular-nums}
+.stop.played .pin{background:var(--forest);color:var(--stone)}
+.stop.near .pin{box-shadow:0 0 0 6px var(--sage)}
+.card{background:var(--paper);border:1px solid var(--bark);padding:14px 16px;display:grid;gap:10px;min-width:0;box-shadow:4px 4px 0 var(--moss)}
+.stop.near .card{box-shadow:6px 6px 0 var(--forest)}
 .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.time{font:500 .8rem var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
-.chip{font:500 .72rem var(--mono);padding:3px 8px;border-radius:99px;background:var(--bg);color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
-.chip.near{background:var(--route-soft);color:var(--route)}
-.chip.played{background:var(--ok-soft);color:var(--ok)}
-.dist{margin-left:auto;font:500 .82rem var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
-.card h3{margin:0;font:700 1.05rem/1.25 var(--display)}
-.preview{font-size:.93rem;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-label{font-weight:600;font-size:.95rem;display:block;margin-bottom:6px}
-textarea,input,select{width:100%;box-sizing:border-box;font:16px/1.45 var(--body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.time{font:500 12px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.06em}
+.tag{font:500 10.5px/1 var(--mono);padding:4px 8px;border-radius:999px;text-transform:uppercase;letter-spacing:.1em;border:1px solid var(--moss);color:var(--bark)}
+.tag.near{background:var(--forest);border-color:var(--forest);color:var(--stone)}
+.tag.played{background:var(--sage);border-color:var(--sage)}
+.dist{margin-left:auto;font:400 12px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.card h3{margin:0;font:500 1.45rem/1.15 var(--display);color:var(--bark);text-wrap:balance}
+.preview{font-size:15px;color:var(--ink);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.more{display:grid;gap:8px;padding-top:10px;border-top:1px solid rgba(75,63,53,.18)}
+label{font:500 11px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px}
+textarea,input,select{width:100%;font:16px/1.45 var(--body);color:var(--ink);background:var(--paper);border:1px solid var(--bark);border-radius:0;padding:10px 12px}
 textarea{min-height:180px;resize:vertical}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media (max-width:420px){.grid2{grid-template-columns:1fr}}
-.note{font-size:.88rem;color:var(--muted)}
-.msg{padding:10px 12px;border-radius:10px;background:var(--warn-soft);color:var(--ink);font-size:.93rem}
-.player{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:var(--bg);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-top:14px;padding-bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:5}
-.player .in{max-width:560px;margin:0 auto;display:grid;gap:8px}
-.player .now{font:700 1.02rem var(--display)}
-.player .text{font-size:.92rem;max-height:6.5em;overflow:auto;opacity:.9}
-.player .btn.ghost{color:var(--bg);border-color:rgba(127,127,127,.5)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:440px){.grid2{grid-template-columns:1fr}}
+.note{font:400 12px/1.5 var(--mono);color:var(--muted)}
+.msg{padding:10px 12px;background:var(--sage);color:var(--ink);font-size:15px;border:1px solid var(--moss)}
+.panel{padding:16px;display:grid;gap:14px}
+.player{position:fixed;left:0;right:0;bottom:0;background:var(--bark);color:var(--stone);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-top:16px;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:5;border-top:3px solid var(--moss)}
+.player .in{max-width:600px;margin:0 auto;display:grid;gap:10px}
+.player .eyebrow{color:var(--sage)}
+.player .now{font:500 1.3rem/1.15 var(--display)}
+.player .text{font-size:15px;max-height:7em;overflow:auto;opacity:.92}
+.player .btn{background:var(--stone);color:var(--bark);border-color:var(--stone)}
+.player .btn.ghost{background:none;color:var(--stone);border-color:var(--sage)}
+.player .ask{display:flex;gap:8px}
+.player .ask input{background:transparent;color:var(--stone);border:1px solid var(--sage);border-radius:999px;padding:8px 14px;font-size:15px;min-width:0}
+.player .ask input::placeholder{color:var(--sage)}
 @media (prefers-reduced-motion:no-preference){.stop.near .pin{animation:pulse 1.6s ease-in-out infinite}}
-@keyframes pulse{50%{box-shadow:0 0 0 10px var(--route-soft)}}
+@keyframes pulse{50%{box-shadow:0 0 0 10px var(--sage)}}
 </style>
 
 <div class="wrap">
-  <header style="display:grid;gap:6px">
+  <header class="site">
     <span class="eyebrow">Your walking guide</span>
     <h1 id="tourTitle">Wander Guide</h1>
-    <p class="muted" id="tourSub">Enter the day's program. When you reach a stop, the guide starts talking.</p>
+    <p class="lede" id="tourSub">Enter the day's program. When you reach a stop, the guide starts talking.</p>
   </header>
 
   <div class="tabs" role="tablist">
@@ -83,7 +96,7 @@ textarea{min-height:180px;resize:vertical}
   </div>
 
   <section id="viewTour" style="display:grid;gap:16px">
-    <div class="status" id="status"><span class="dot"></span><span class="grow" id="statusText">Tour not started</span><button class="btn small" id="startBtn">Start tour</button></div>
+    <div class="status frame" id="status"><span class="dot"></span><span class="grow" id="statusText">Tour not started</span><button class="btn small" id="startBtn">Start tour</button></div>
     <ol class="stops" id="stops"></ol>
     <p class="note">Each stop starts automatically within <span id="radiusLbl">100</span> m. You can also tap Play any time.</p>
   </section>
@@ -105,7 +118,7 @@ textarea{min-height:180px;resize:vertical}
       <div><label for="radius">Start talking within</label>
         <select id="radius"><option value="60">60 m</option><option value="100" selected>100 m</option><option value="150">150 m</option></select></div>
     </div>
-    <div style="display:grid;gap:12px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--surface)">
+    <div class="panel frame">
       <h2>Voice-over</h2>
       <div><label for="voice">Narrator voice</label><select id="voice"><option value="">Best available voice</option></select></div>
       <div><label for="rate">Speaking speed <span class="muted" id="rateLbl">1.0×</span></label><input id="rate" type="range" min="0.7" max="1.3" step="0.05" value="1" style="padding:0;border:0;background:none"></div>
@@ -119,10 +132,11 @@ textarea{min-height:180px;resize:vertical}
 
 <div class="player" id="player" hidden>
   <div class="in">
-    <div class="row"><span class="eyebrow" style="color:inherit;opacity:.7">Now telling</span></div>
+    <div class="row"><span class="eyebrow">Now telling</span></div>
     <div class="now" id="nowTitle"></div>
     <div class="text" id="nowText"></div>
     <div class="row"><button class="btn small" id="pauseBtn">Pause</button><button class="btn small ghost" id="stopBtn">Stop</button><button class="btn small ghost" id="moreBtn">Tell me more</button></div>
+    <form class="ask" id="askForm" hidden><input id="askInput" placeholder="Ask the guide about anything here" autocomplete="off"><button class="btn small" id="askBtn">Ask</button></form>
   </div>
 </div>
 
@@ -133,21 +147,22 @@ const SAMPLE_TOUR = {
   title: "Prague Family Day",
   program: "09:00 Prague Castle (tram 22 to Pražský hrad)\n11:00 Malá Strana, early lunch around 11:30\n12:15 Charles Bridge (stroller nap)\n13:15 Kampa Island and riverside\n14:30 Old Town Square & Astronomical Clock",
   stops: [
-    {name:"Prague Castle", time:"09:00", lat:50.09090, lng:14.40050,
+    {name:"Prague Castle", more:[{"topic": "St. Vitus Cathedral", "text": "The cathedral took almost six hundred years to finish. The first architect, Matthias of Arras, died early on, and a young Peter Parler took over. He also built Charles Bridge. Inside, look for the Chapel of Saint Wenceslas, its walls set with more than a thousand semi-precious stones. Behind a small door there sits the chamber with the Czech crown jewels. It is locked with seven locks, and the seven keys are held by seven different people, including the president and the archbishop. In the north aisle, find the stained glass window by Alfons Mucha, the art nouveau painter, with its glowing blues and reds."}, {"topic": "The castle guards", "text": "The guards change every hour, but the big ceremony is at noon in the first courtyard, with a fanfare and the handing over of the flag. Something for a film person: the blue uniforms were designed in 1990 by Theodor Pištěk, the costume designer who won an Oscar for Amadeus. The guards are trained not to react to tourists, so your daughter can try to make one smile, but she probably won't succeed."}, {"topic": "Golden Lane", "text": "Golden Lane is a row of tiny, colourful houses built right into the castle walls. Guards and goldsmiths once lived here. Franz Kafka rented number twenty-two from his sister for a winter in 1916 and wrote some of his stories here. You need a castle ticket to enter. The houses are small enough that a two-year-old feels like they were built for her."}], time:"09:00", lat:50.09090, lng:14.40050,
      narration:"Good morning, and welcome to Prague Castle. Kings, emperors and presidents have ruled from this hill for more than a thousand years, and today it is one of the largest castle complexes in the world. The giant church in the middle is Saint Vitus Cathedral. Building started in 1344 and was only finished in 1929, almost six hundred years later. For your little one: look up at the roof and find the gargoyles, the stone monsters that spit out rainwater when it rains. At the main gate, the guards stand perfectly still. See if she can stand as still as a guard for ten seconds. Stick to the big courtyards with the stroller, enjoy the view over the red roofs, and don't worry about seeing every room."},
-    {name:"Malá Strana", time:"11:00", lat:50.08790, lng:14.40360,
+    {name:"Malá Strana", more:[{"topic": "House signs", "text": "Before 1770, Prague houses had no numbers. People knew them by painted signs instead. On Nerudova street, look for The Three Little Fiddles, The Golden Horseshoe and The Two Suns. The writer Jan Neruda, after whom the street is named, lived at The Two Suns. It's a nice game for the walk down: find the red lion, the golden key or the white swan."}, {"topic": "Prague in Amadeus", "text": "When Miloš Forman made Amadeus, he shot it in Prague, because these streets could still pass for eighteenth-century Vienna. The opera scenes were filmed in the Estates Theatre in the Old Town. That is the real theatre where Mozart conducted the premiere of Don Giovanni in 1787. Mozart loved Prague, and Prague loved him back, often more than Vienna did."}], time:"11:00", lat:50.08790, lng:14.40360,
      narration:"You're now walking down into Malá Strana, the Lesser Town. These streets were built for the people who served the castle, and many houses still carry old house signs instead of numbers: look for painted animals, stars and keys above the doors. Ask your daughter to spot a golden animal on the way down. The big green dome on Lesser Town Square belongs to Saint Nicholas Church, where Mozart once played the organ. This is a good moment to stop for an early lunch, around half past eleven, before she gets too tired."},
-    {name:"Charles Bridge", time:"12:15", lat:50.08650, lng:14.41140,
+    {name:"Charles Bridge", more:[{"topic": "The egg legend", "text": "A famous Prague legend says the builders mixed egg yolks into the mortar to make the bridge stronger, and that villages all over Bohemia sent carts full of eggs. Scientists have tested samples of the old mortar, with mixed results, so the story lives on. Another legend: Charles the Fourth laid the first stone on the ninth of July 1357 at 5:31 in the morning. Write that down as numbers and you get 1-3-5-7-9-7-5-3-1, the same forwards and backwards, chosen to bring the bridge luck."}, {"topic": "The statues", "text": "The bridge had no statues for its first three hundred years. They were added between about 1683 and 1714, in baroque style. Pollution and weather damaged them, so most of what you see today are copies. Many originals are kept safe in the National Museum's Lapidarium and in the casemates under Vyšehrad, the old fortress further down the river."}], time:"12:15", lat:50.08650, lng:14.41140,
      narration:"Time for a slow walk across Charles Bridge, hopefully with a sleeping little girl in the stroller. Emperor Charles the Fourth started building this bridge in 1357, and for centuries it was the only way across the river. Thirty statues of saints watch over you as you walk. Look for Saint John of Nepomuk: touching the shiny bronze plaque under his statue is said to bring you back to Prague one day. Take your time, enjoy the river and the view back up to the castle where you started this morning."},
-    {name:"Kampa Island", time:"13:15", lat:50.08490, lng:14.40750,
+    {name:"Kampa Island", more:[{"topic": "The crawling babies", "text": "The three bronze babies are by David Černý, the Czech artist known for provocative public art. They have barcodes where their faces should be. Ten similar babies crawl up the Žižkov Television Tower, on the other side of the city, where they were put in 2000. These three came down to ground level so people can touch them and climb on them, which most children do."}, {"topic": "The Devil's Channel", "text": "The little stream is called Čertovka, the Devil's Channel. According to the story, it got its name from a bad-tempered woman who lived nearby on Maltese Square. The neighbours said she was as quarrelsome as the devil. The waterwheel belonged to one of the mills that once lined the stream. People sometimes call this corner the Venice of Prague."}, {"topic": "The 2002 flood", "text": "In August 2002, the Vltava rose higher than it had in centuries, and most of Kampa ended up under water. Look for flood marks on some of the walls, showing how high the water reached. Today, mobile flood barriers protect the riverbank and can be put up within hours."}], time:"13:15", lat:50.08490, lng:14.40750,
      narration:"Welcome to Kampa, a quiet island tucked between the river and a small stream called Čertovka, the Devil's Channel. Look for the old wooden waterwheel turning in the stream. There has been a mill here for centuries. In the park, near the Kampa museum, you'll find something your daughter will love: three giant bronze babies crawling across the grass, made by the Czech artist David Černý. Let her touch them, watch the ducks and swans on the river, and run around on the grass. No rush here. This is your break in the day."},
-    {name:"Old Town Square & Astronomical Clock", time:"14:30", lat:50.08700, lng:14.42063,
+    {name:"Old Town Square & Astronomical Clock", more:[{"topic": "How the clock works", "text": "The clock was built in 1410 by the clockmaker Mikuláš of Kadaň, together with the astronomer Jan Šindel. The big dial shows the sun and moon moving through the sky and the signs of the zodiac. The figures beside it each stand for something people feared: Vanity with a mirror, Greed with a moneybag, Death as the skeleton, and a fourth figure for pleasure. A later legend says the city council had the clockmaker blinded so he could never build a finer clock anywhere else. It isn't true, but every Prague child knows the story."}, {"topic": "The 27 crosses", "text": "Look down at the pavement near the Old Town Hall. You'll find twenty-seven white crosses. They mark where twenty-seven leaders of the Czech Protestant uprising were executed in 1621, after their defeat at the Battle of White Mountain. It was a turning point in Czech history, and the crosses are still there to remember them."}, {"topic": "Trdelník", "text": "You'll smell trdelník everywhere around the square: dough wrapped around a stick, roasted over a fire and rolled in sugar and nuts. It's sold as an old Czech treat, but it actually comes from the wider region of Slovakia and Hungary, and only became popular in Prague recently, mostly with visitors. It's still delicious, and perfect for small hands. Ask for one without the cream filling to keep the mess down."}], time:"14:30", lat:50.08700, lng:14.42063,
      narration:"Welcome to Old Town Square, with its colourful houses and the two dark spires of the Týn Church. On the tower of the Old Town Hall is the Astronomical Clock, put up in 1410 and still working today. Every hour, a little skeleton rings his bell, and twelve apostles appear one by one in the windows at the top. Try to be in front of the clock just before three o'clock, so your daughter can watch the show. Afterwards, find a café for coffee and cake. You've had a full day. Well done, all three of you."}
   ]
 };
 
 const $ = id => document.getElementById(id);
 let tour = load() || SAMPLE_TOUR;
+let currentTopic = null;
 let played = new Set(), current = null, watchId = null, pos = null, speechUnlocked = false;
 let sample = null;
 
@@ -168,19 +183,22 @@ function render(){
   $("stops").innerHTML = tour.stops.map((s,i)=>{
     const d = pos && isFinite(s.lat) ? distM(pos.lat,pos.lng,s.lat,s.lng) : null;
     const near = d!==null && d<=tour.radius, done = played.has(i);
-    const chip = done?'<span class="chip played">Heard</span>':near?'<span class="chip near">You are here</span>':'';
+    const chip = done?'<span class="tag played">Heard</span>':near?'<span class="tag near">You are here</span>':'';
+    const more=(s.more||[]).length?`<div class="more"><span class="eyebrow">Tell me more about</span><div class="row">${s.more.map((m,k)=>`<button class="chip${current===i&&currentTopic===k?" on":""}" data-more="${i}:${k}">${esc(m.topic)}</button>`).join("")}</div></div>`:"";
     return `<li class="stop${done?" played":""}${near?" near":""}">
       <span class="pin">${i+1}</span>
       <div class="card">
         <div class="row">${s.time?`<span class="time">${esc(s.time)}</span>`:""}${chip}${d!==null?`<span class="dist">${fmtDist(d)}</span>`:""}</div>
         <h3>${esc(s.name)}</h3>
         <p class="preview">${esc(s.narration)}</p>
-        <div class="row"><button class="btn small" data-play="${i}">${current===i?"Playing…":"Play"}</button></div>
+        <div class="row"><button class="btn small" data-play="${i}">${current===i&&currentTopic===null?"Playing…":"Play"}</button></div>
+        ${more}
       </div></li>`;
   }).join("");
 }
 
-$("stops").addEventListener("click",e=>{const b=e.target.closest("[data-play]");if(b){unlockSpeech();play(+b.dataset.play)}});
+$("stops").addEventListener("click",e=>{const b=e.target.closest("[data-play]");if(b){unlockSpeech();play(+b.dataset.play);return}
+  const m=e.target.closest("[data-more]");if(m){unlockSpeech();const [i,k]=m.dataset.more.split(":").map(Number);const t=tour.stops[i].more[k];play(i,t.text,k,t.topic)}});
 
 /* ---------- Speech ---------- */
 const LANGS={English:"en-GB",Dutch:"nl-NL",Polish:"pl-PL",German:"de-DE"};
@@ -203,17 +221,17 @@ function speak(text){
   const code=LANGS[tour.lang]||"en-GB", voice=pickVoice(code);
   const parts=text.match(/[^.!?]+[.!?]*\s*/g)||[text];
   parts.forEach((p,i)=>{const u=new SpeechSynthesisUtterance(p.trim());u.lang=code;if(voice)u.voice=voice;u.rate=voicePref.rate;
-    if(i===parts.length-1)u.onend=()=>{ if(current!==null){ current=null; render(); $("pauseBtn").textContent="Pause"} };
+    if(i===parts.length-1)u.onend=()=>{ if(current!==null){ current=null; currentTopic=null; render(); $("pauseBtn").textContent="Pause"} };
     speechSynthesis.speak(u)});
 }
-function play(i, text){
-  const s=tour.stops[i]; current=i; played.add(i);
-  $("player").hidden=false; $("nowTitle").textContent=`${i+1}. ${s.name}`; $("nowText").textContent=text||s.narration;
-  $("pauseBtn").textContent="Pause"; $("moreBtn").hidden=!sample; $("moreBtn").disabled=false;
+function play(i, text, topicIdx=null, topic=null){
+  const s=tour.stops[i]; current=i; currentTopic=topicIdx; played.add(i);
+  $("player").hidden=false; $("nowTitle").textContent=topic?`${s.name} · ${topic}`:`${i+1}. ${s.name}`; $("nowText").textContent=text||s.narration;
+  $("pauseBtn").textContent="Pause"; $("moreBtn").hidden=!sample; $("moreBtn").disabled=false; $("askForm").hidden=!sample;
   speak(text||s.narration); render();
 }
 $("pauseBtn").onclick=()=>{ if(speechSynthesis.paused){speechSynthesis.resume();$("pauseBtn").textContent="Pause"}else{speechSynthesis.pause();$("pauseBtn").textContent="Resume"} };
-$("stopBtn").onclick=()=>{ speechSynthesis.cancel(); current=null; $("player").hidden=true; render() };
+$("stopBtn").onclick=()=>{ speechSynthesis.cancel(); current=null; currentTopic=null; $("player").hidden=true; render() };
 
 /* ---------- Location ---------- */
 function setStatus(cls,text,btn){const el=$("status");el.className="status "+cls;$("statusText").textContent=text;$("startBtn").textContent=btn;}
@@ -266,15 +284,16 @@ For every stop in order give:
 - name: the place's proper name
 - time: the time from the program, or "" if none
 - lat, lng: the place's real coordinates as numbers, as precise as you know them (5 decimals). If a line is not a real place (e.g. "free time"), use null.
+- more: 2 or 3 extra topics about this place a visitor might want to hear more about, each {"topic": 2-4 word label, "text": 80-130 words read aloud, accurate}.
 - narration: 110-170 words, written to be read aloud when the visitor arrives. Second person, present tense. Accurate facts only: history, what to look at right now, one memorable detail or story. No markdown, no lists, no headings.
 Also give a short tour title (max 5 words).
 
-Reply with only JSON: {"title": string, "city": string, "stops": [{"name": string, "time": string, "lat": number|null, "lng": number|null, "narration": string}]}`;
+Reply with only JSON: {"title": string, "city": string, "stops": [{"name": string, "time": string, "lat": number|null, "lng": number|null, "narration": string, "more": [{"topic": string, "text": string}]}]}`;
   try{
     const r=await sample.json(prompt);
     if(!r||!Array.isArray(r.stops)||!r.stops.length) throw {code:"invalid_json"};
     tour={title:String(r.title||"My tour"),city:String(r.city||city),lang,radius,program,
-      stops:r.stops.map(s=>({name:String(s.name||"Stop"),time:String(s.time||""),lat:s.lat==null?NaN:Number(s.lat),lng:s.lng==null?NaN:Number(s.lng),narration:String(s.narration||"")}))};
+      stops:r.stops.map(s=>({name:String(s.name||"Stop"),time:String(s.time||""),lat:s.lat==null?NaN:Number(s.lat),lng:s.lng==null?NaN:Number(s.lng),narration:String(s.narration||""),more:Array.isArray(s.more)?s.more.filter(m=>m&&m.topic&&m.text).map(m=>({topic:String(m.topic),text:String(m.text)})):[]}))};
     played=new Set(); save(); render(); show("tour");
   }catch(e){ if(e?.code!=="cancelled"){msg.hidden=false;msg.textContent=errText(e?.code)} }
   finally{ $("buildBtn").disabled=false; $("buildBtn").textContent="Build my tour" }
@@ -290,8 +309,17 @@ $("moreBtn").onclick=async()=>{
   finally{ b.textContent="Tell me more"; b.disabled=false }
 };
 
+$("askForm").onsubmit=async e=>{
+  e.preventDefault(); const q=$("askInput").value.trim(); if(!q||current===null||!sample)return;
+  const i=current, s=tour.stops[i], b=$("askBtn"); b.disabled=true; b.textContent="…"; $("nowText").textContent="Thinking…";
+  try{
+    const {text}=await sample(`You are a friendly tour guide speaking aloud in ${tour.lang}. The visitor is at "${s.name}" in ${tour.city}. They ask: "${q}"\n\nAnswer in 60-120 words, accurate, as spoken text with no markdown. If you are not sure of a fact, say so briefly.`,{cache:false});
+    $("askInput").value=""; play(i,text,null,q);
+  }catch(e){ $("nowText").textContent=errText(e?.code) }
+  finally{ b.disabled=false; b.textContent="Ask" }
+};
 render();
-(window.claude?.use("sample")||Promise.resolve(null)).then(s=>{ sample=s; if(current!==null) $("moreBtn").hidden=!s; }).catch(()=>{});
+(window.claude?.use("sample")||Promise.resolve(null)).then(s=>{ sample=s; if(current!==null){ $("moreBtn").hidden=!s; $("askForm").hidden=!s } }).catch(()=>{});
 if("speechSynthesis" in window){ speechSynthesis.onvoiceschanged=fillVoices; }
 fillVoices();
 $("lang").addEventListener("change",fillVoices);
